@@ -1,0 +1,4 @@
+conectos de mysql
+pip install mysql-connector-python
+o
+pip install mysqlclient
