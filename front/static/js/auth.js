@@ -1,16 +1,30 @@
-// Puedes mantenerlo para AJAX, pero ahora con endpoints PHP
 document.getElementById('login-form').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
 
-    const response = await fetch('auth.php?action=login', {
-        method: 'POST',
-        body: formData
-    });
+    const formData = {
+        username: e.target.matricula.value,
+        password: e.target.contrasena.value
+    };
 
-    if (response.ok) {
-        window.location.href = 'dashboard.php';
-    } else {
-        alert('Error en el login');
+    try {
+        const response = await fetch('/AlumnosBUAP/front/includes/auth.php?action=login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
+
+        if (response.redirected) {
+            window.location.href = response.url;
+        } else {
+            const result = await response.json();
+            if (result.error) {
+                alert(result.message || 'Error en el login');
+            }
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error de conexión con el servidor');
     }
 });

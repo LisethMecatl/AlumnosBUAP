@@ -15,8 +15,8 @@
         <hr class="my-4">
         <p>Inicia sesión o regístrate para acceder a todas las funcionalidades.</p>
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <a href="login.php" class="btn btn-primary btn-lg px-4 gap-3">Iniciar Sesión</a>
-            <a href="register.php" class="btn btn-outline-secondary btn-lg px-4">Registrarse</a>
+            <a href="?page=login" class="btn btn-primary btn-lg px-4 gap-3">Iniciar Sesión</a>
+            <a href="?page=register" class="btn btn-outline-secondary btn-lg px-4">Registrarse</a>
         </div>
     </div>
 </body>

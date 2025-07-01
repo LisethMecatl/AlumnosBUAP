@@ -4,18 +4,27 @@ require_once 'config.php';
 function check_auth()
 {
     if (!isset($_SESSION['jwt_token'])) {
-        header('Location: login.php');
+        header('Location: ' . BASE_URL . '?page=login');
         exit();
     }
+
+    $response = api_request('/usuarios/me');
+
+    if ($response['status'] !== 200) {
+        session_destroy();
+        header('Location: ' . BASE_URL . '?page=login');
+        exit();
+    }
+
+    $_SESSION['user'] = $response['data'];
 }
 
 function check_admin()
 {
     check_auth();
-    // Verificar rol de admin (necesitarías un endpoint en tu API)
-    $user = api_request('/usuarios/me');
-    if ($user['acceso_id'] !== 1) {
-        header('Location: dashboard.php');
+
+    if ($_SESSION['user']['acceso_id'] !== 1) {
+        header('Location: ' . BASE_URL . '?page=dashboard');
         exit();
     }
 }
