@@ -39,3 +39,9 @@ def get_current_active_user(current_user: Usuario = Depends(get_current_user)):
     if current_user.acceso_id != 1:  # 1 es admin
         raise HTTPException(status_code=400, detail="Usuario inactivo")
     return current_user
+
+
+def verify_admin(user: Usuario):
+    if user.acceso_id != 1:
+        raise HTTPException(
+            status_code=403, detail="Se requieren privilegios de administrador")
