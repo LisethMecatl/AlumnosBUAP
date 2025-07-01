@@ -1,4 +1,24 @@
-conectos de mysql
-pip install mysql-connector-python
-o
-pip install mysqlclient
+# poner en terminal, para back
+Python 3.13
+GITBASH
+
+entorno virtual
+Python -m venv venv
+
+activación
+source venv/Scripts/activate
+
+# pip install fastapi
+
+# pip install "uvicorn[standart]"
+
+# pip install fastapi[all]
+
+#pip install -r requirements.txt
+
+#pip install sqlalchemy
+
+//verificar instalaciones
+#pip list
+
+uvicorn main:app --reload
